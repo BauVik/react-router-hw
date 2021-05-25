@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Navigate from "./components/Navigate";
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter as Router} from "react-router-dom";
+import App from "./components/App";
 
 ReactDOM.render(
-    <BrowserRouter>
-        <Navigate />
-    </BrowserRouter>
+    <Router>
+        <App />
+    </Router>
     ,
   document.getElementById('root')
 );

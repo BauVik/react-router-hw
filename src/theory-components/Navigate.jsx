@@ -1,8 +1,9 @@
 import React from 'react'
-import {NavLink, Link, Route} from 'react-router-dom'
+import {NavLink, Link, Route, Switch} from 'react-router-dom'
 import About from "./About";
 import Contact from "./Contact";
 import Home from "./Home";
+import User from "./User";
 
 const Navigate = () => {
     let userId = 1
@@ -17,11 +18,18 @@ const Navigate = () => {
                 <li><NavLink to={"/users/"+userId}>Users 1</NavLink></li>
             </ul>
             <hr/>
+            <Switch>
                 <Route exact={true} path="/" component={Home}/>
-                <Route path="/about" component={About} />
+                <Route path="/about">
+                    <About />
+                </Route>
                 <Route path="/contact" component={Contact} />
-                <Route  path="/users" render={() => (<h5>Filter</h5>)} />
-                <Route path="/users/:id" render={() => (<h5>Users 1</h5>)} />
+                <Route exact={true} path="/users" render={() => (<h5>Filter</h5>)} />
+                <Route path="/users/:id" >
+                    <User />
+                </Route>
+            </Switch>
+
         </section>
     )
 }
