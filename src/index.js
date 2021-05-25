@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Navigate from "./components/Navigate";
+import {BrowserRouter} from "react-router-dom";
 
 ReactDOM.render(
-    <div />,
+    <BrowserRouter>
+        <Navigate />
+    </BrowserRouter>
+    ,
   document.getElementById('root')
 );
 
