@@ -1,42 +1,47 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {userContext} from "./App";
+import React, { useContext, useEffect, useState } from "react";
+import { userContext } from "./App";
 import Loading from "./Loading";
 
 const User = () => {
-    const [users, setUsers] = useState(null)
+  const [users, setUsers] = useState(null);
 
-    useEffect(() => {
-        fetchingUsers()
-    }, [])
+  useEffect(() => {
+    fetchingUsers();
+  }, []);
 
-    const fetchingUsers = () => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response => response.json())
-            .then(json => setUsers(json))
-    }
+  const fetchingUsers = () => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((json) => setUsers(json));
+  };
 
-    const cntxt = useContext(userContext)
+  const cntxt = useContext(userContext);
 
-    const renderUsers = () => {
-        if ( !users ) return (<Loading />)
-        return (
-            users.map(user => (<button key={user.id} onClick={() => cntxt.changeUser(user) }>{user.username}</button>) )
-        )
-    }
+  const renderUsers = () => {
+    if (!users) return <Loading />;
+    return users.map((user) => (
+      <button key={user.id} onClick={() => cntxt.changeUser(user)}>
+        {user.username}
+      </button>
+    ));
+  };
 
-    const renderActiveUser = () => {
-        if (!cntxt.user) return null
-        return (
-            <div><hr/>{cntxt.user.name} ({cntxt.user.email})<hr /></div>
-        )
-    }
-
+  const renderActiveUser = () => {
+    if (!cntxt.user) return null;
     return (
-        <section>
-            {renderUsers()}
-            {renderActiveUser()}
-        </section>
-    )
-}
+      <div>
+        <hr />
+        {cntxt.user.name} ({cntxt.user.email})<hr />
+      </div>
+    );
+  };
 
-export default User
+  return (
+    <section>
+      {renderUsers()}
+      {renderActiveUser()}
+    </section>
+  );
+};
+
+export default User;
